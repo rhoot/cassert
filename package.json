@@ -6,7 +6,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rhoot/android-bankdroid.git"
+    "url": "https://github.com/rhoot/cassert.git"
   },
   "keywords": [
     "assert",

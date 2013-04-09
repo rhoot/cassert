@@ -77,7 +77,7 @@ function readCoffeeLine(file, lineno)
       , options = { filename: file }
 
     if (coffee.helpers.isLiterate) {
-        options.literate = coffee.helpers.isLiterate(file);
+        options.literate = coffee.helpers.isLiterate(file)
     }
 
     var src = coffee.compile(src, options)
