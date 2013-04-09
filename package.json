@@ -1,0 +1,22 @@
+{
+  "name": "cassert",
+  "version": "0.1.0",
+  "author": "Johan Sköld <johan@skold.cc>",
+  "description": "C-style assert for javascript and coffee-script, in node.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rhoot/android-bankdroid.git"
+  },
+  "keywords": [
+    "assert",
+    "debug"
+  ],
+  "dependencies": {
+    "callsite": "~1.0.0"
+  },
+  "license": "BSD",
+  "engines": {
+    "node": "*"
+  }
+}
