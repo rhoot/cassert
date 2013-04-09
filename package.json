@@ -1,6 +1,6 @@
 {
   "name": "cassert",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Johan Sköld <johan@skold.cc>",
   "description": "C-style assert for javascript and coffee-script, in node.",
   "main": "index.js",
