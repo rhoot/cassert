@@ -90,7 +90,7 @@ function readCoffeeLine(file, lineno)
 
 function findCoffee()
 {
-    try { require('coffee-script') } catch (e) {}
+    try { return require('coffee-script') } catch (e) {}
 
     var coffeebin = null
 
