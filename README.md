@@ -76,7 +76,7 @@ Asserts that two values are non-strictly equal (i.e. uses `==` to compare).
 ```js
 var foo = 15, bar = "banana"
 assert.equal(foo, "15") // OK
-assert.equal(far, bar) // Throws error:
+assert.equal(foo, bar) // Throws error:
                        // AssertionError: assert.equal: foo, bar (15 != 'banana')
 ```
 
