@@ -69,6 +69,27 @@ AssertionError: bar > 10
     at Object.oncomplete (fs.js:297:15)
 ```
 
+## assert.equal
+
+Asserts that two values are non-strictly equal (i.e. uses `==` to compare).
+
+```js
+var foo = 15, bar = "banana"
+assert.equal(foo, "15") // OK
+assert.equal(foo, bar) // Throws error:
+                       // AssertionError: assert.equal: foo, bar (15 != 'banana')
+```
+
+## assert.strictEqual
+
+Asserts that two values are strictly equal (i.e. uses `===` to compare).
+
+```js
+var foo = 15, bar = "15"
+assert.strictEqual(foo, bar) // Throws error:
+                             // AssertionError: assert.strictequal: foo, bar (15 !== 15')
+```
+
 ## License (BSD)
 
 Copyright (c) 2013, Johan Sköld &lt;johan@skold.cc&gt;  

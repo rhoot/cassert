@@ -1,6 +1,7 @@
 var callsite = require('callsite')
   , fs = require('fs')
   , path = require('path')
+  , util = require('util')
   , AssertionError = require('assert').AssertionError
 
 /**
@@ -15,20 +16,45 @@ module.exports = (process.env.NODE_ENV === 'production')
  * Asserts that `expression` is true.
  */
 
+function fail(extraMessage) {
+    var stack = callsite()
+      , file = stack[2].getFileName()
+      , line = stack[2].getLineNumber()
+      , message = getAssertionExpression(file, line)
+
+    if (fail.caller !== assert)
+        message = "assert." + fail.caller.name + ": " + message
+    
+    if (extraMessage)
+        message += " (" + extraMessage + ")"
+
+    var err = new AssertionError({
+        message: message,
+        stackStartFunction: stack[1].getFunction()
+    })
+
+    throw err    
+}
+
 function assert(expression)
 {
     if (expression) return
 
-    var stack = callsite()
-      , file = stack[1].getFileName()
-      , line = stack[1].getLineNumber()
+    fail()
+}
 
-    var err = new AssertionError({
-        message: getAssertionExpression(file, line),
-        stackStartFunction: stack[0].getFunction()
-    })
+assert.equal = function equal(x, y)
+{
+    if (x == y) return
 
-    throw err
+    fail(util.format("%s != %s", util.inspect(x), util.inspect(y)))
+}
+
+assert.strictEqual = function strictEqual(x, y)
+{
+    if (x === y) return
+
+    fail(util.format("%s !== %s", util.inspect(x), util.inspect(y)))
 }
 
 /**
@@ -51,7 +77,7 @@ function getAssertionExpression(file, lineno)
             break
     }
 
-    return line.match(/assert\s*\((.*)\)/)[1]
+    return line.match(/assert(?:\.\w+)?\s*\((.*)\)/)[1]
 }
 
 /**
